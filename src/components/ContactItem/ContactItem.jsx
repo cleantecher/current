@@ -28,7 +28,14 @@ const setID=(_id)=>{
 }
 
 // create function to get the data to delete
-
+const setData = (id, firstName, lastName,company,role,email) => {
+  localStorage.getItem('firstName');
+  localStorage.getItem('lastName');
+  localStorage.getItem('company');
+  localStorage.getItem('role');
+  localStorage.getItem('email');
+  localStorage.getItem('ID', id)
+}
 const getData=()=>{
   axios.get("/api/contacts")
       .then((response)=>{
@@ -87,14 +94,23 @@ const onDelete=(id)=>{
                     </small>
                   </p>
 
-                {/* Aman tried to create edit and delete buttons but didnt remember how to 
-                add event handler */}
-                  <button>Edit</button>
+
                   {/* pass in the id */}
                   <Link to="/:id"> 
                     <button onClick={()=>onDelete(contact._id)}>Delete</button>
                   </Link>
                   
+                  <Link to="/update"> 
+                    <button onClick={()=>setData(
+                      contact._id,
+                      contact.firstName,
+                      contact.lastName,
+                      contact.company,
+                      contact.email,
+                      contact.role
+                      )}
+                      >Update</button>
+                  </Link>
 
                   
 
