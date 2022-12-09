@@ -12,11 +12,7 @@ export async function update(userData) {
   return sendRequest(`${BASE_URL}/update`, "POST", userData);
 }
 
-// Aman messed this up the address is wrong. 
-// the /contacts might be wrong here
-export async function deleteContact(userData) {
-  return sendRequest(`${BASE_URL}/contacts`, "DELETE", userData);
-}
+
 
 export function checkToken() {
   return sendRequest(`${BASE_URL}/check-token`);

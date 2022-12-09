@@ -15,3 +15,8 @@ export async function update(credentials) {
   return sendRequest(`${BASE_URL}/update`, "POST", credentials);
 }
 
+// Aman messed this up the address is wrong. 
+// the /contacts might be wrong here
+export async function deleteContact(userData) {
+  return sendRequest(`${BASE_URL}/id`, "DELETE", userData);
+}

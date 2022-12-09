@@ -21,6 +21,29 @@ export default function ContactList() {
 	}, []);
 
 // aman thought the delete axios request would go here but isnt sure how to do it
+// get the id to delete/ edit item
+const setID=(_id)=>{
+  console.log(_id)
+  localStorage.setItem("ID", _id)
+}
+
+// create function to get the data to delete
+
+const getData=()=>{
+  axios.get("/api/contacts")
+      .then((response)=>{
+        setContacts(response.data)
+      })
+}
+// delete function
+const onDelete=(id)=>{
+  axios.delete(`api/contacts/${id}`)
+  .then(()=>{
+    getData();
+  })
+}
+
+
   return (
     <div className="container">
       <h2>
@@ -67,8 +90,9 @@ export default function ContactList() {
                 {/* Aman tried to create edit and delete buttons but didnt remember how to 
                 add event handler */}
                   <button>Edit</button>
-                  <Link to={`/contact/${contact._id}`} className="link-line">
-                    <button>Delete</button>
+                  {/* pass in the id */}
+                  <Link to="/:id"> 
+                    <button onClick={()=>onDelete(contact._id)}>Delete</button>
                   </Link>
                   
 
