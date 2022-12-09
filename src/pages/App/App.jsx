@@ -8,6 +8,8 @@ import AllContact from '../AllContacts/AllContacts';
 import CurrentStrategy from '../CurrentStrategies/CurrentStrategies';
 import NewStrategy from '../NewStrategy/NewStrategy'
 import NavBar from '../../components/NavBar/NavBar';
+import Update from '../../components/update/update';
+
 import './App.css';
 
 export default function App() {
@@ -27,6 +29,7 @@ export default function App() {
 
             <Route path='/strategy/new' element={<NewStrategy />} />
             <Route path='/strategy' element={<CurrentStrategy/>} />
+            <Route path="/update" element={Update}/>
             
           </Routes>
         </>

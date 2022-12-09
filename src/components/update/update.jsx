@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import {useHistory} from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getUser } from "../../utilities/users-service";
@@ -10,18 +9,24 @@ import { Form } from "react-bootstrap";
 
 
 export default function Update() {
-    let history= useHistory();
+    const navigate=useNavigate()
     const [firstName, setFirstName]=useState("");
     const [lastName, setLastName]=useState("");
+    const [company, setCompany]=useState("");
+    const [role, setRole]=useState("");
+    const [email, setEmail]=useState("");
     const[ID,setID]=useState(null);
 
     const sendDataToAPI = () => {
         // address might be wrong. check routes to make sure
-        axios.put(`http://localhost:3001/api/${ID}`, {
+        axios.put(`http://localhost:3001/${ID}`, {
             firstName,
-            lastName
+            lastName,
+            company,
+            role,
+            email,
         }).then(() => {
-            history.push('/read')
+            navigate("/read")
         })
     }
 
@@ -45,7 +50,7 @@ export default function Update() {
           <label>First Name</label>
           <input
             name="firstName"
-            value={formData.firstName}
+            value={firstName}
             required
             onChange={(e)=>setFirstName(e.target.value)}
           />
@@ -56,7 +61,7 @@ export default function Update() {
             name="lastName"
             type="text"
             required
-            value={formData.lastname}
+            value={lastName}
             onChange={(e)=>setLastName(e.target.value)}
           />
         </div>
@@ -67,7 +72,7 @@ export default function Update() {
             name="company"
             type="text"
             required
-            value={formData.company}
+            value={company}
             onChange={(e)=>setCompany(e.target.value)}
           />
         </div>
@@ -77,7 +82,7 @@ export default function Update() {
             name="role"
             type="text"
             required
-            value={formData.role}
+            value={role}
             onChange={(e)=>setRole(e.target.value)}
           />
         </div>
@@ -87,7 +92,7 @@ export default function Update() {
             name="email"
             type="text"
             required
-            value={formData.email}
+            value={email}
             onChange={(e)=>setEmail(e.target.value)}
           />
         </div>

@@ -40,6 +40,24 @@ async function getAllContact (req, res){
     res.status(400).json(error)
   }
 }
-  
 
-  module.exports ={create, getAllContact, deleteContact}
+function updateContact(req, res) {
+  console.log(req.body);
+  Contact.updateOne(
+    { _id: req.params.id },
+    {
+      firstName: req.params.firstName,
+      lastName: req.params.lastName,
+      company: req.params.company,
+      role : req.params.role,
+      email: req.params.email,
+    },
+    function (err, court) {
+      if (err) return res.message(err);
+      console.log(court);
+      res.redirect("/");
+    }
+  );
+}
+
+  module.exports ={create, getAllContact, deleteContact, updateContact}
